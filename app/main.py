@@ -15,6 +15,10 @@ def normalize_key(key):
     key = key.strip('_')
     return key
 
+@app.get("/healthz")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/stock/{symbol}")
 def get_stock_snapshot(symbol: str):
     url = f"https://finviz.com/quote.ashx?t={symbol.upper()}&p=d"
